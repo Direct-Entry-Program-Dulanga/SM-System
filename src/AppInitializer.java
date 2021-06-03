@@ -20,14 +20,13 @@ public class AppInitializer extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/MainForm.fxml"));
         Parent root = fxmlLoader.load();
         Scene mainScene = new Scene(root);
+        primaryStage.setScene(mainScene);
         MainFormController ctrl = fxmlLoader.getController();
-        ctrl.navigate("/view/HomeForm.fxml");
+        ctrl.navigate("Student Management System","/view/HomeForm.fxml");
         mainScene.setUserData(ctrl);
         mainScene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setScene(mainScene);
         primaryStage.setTitle("Student Management System");
-        primaryStage.setResizable(false);
         primaryStage.show();
         primaryStage.centerOnScreen();
     }

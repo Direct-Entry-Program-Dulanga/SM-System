@@ -63,6 +63,6 @@ public class HomeFormController {
 
     private void navigate(String title, String url) {
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(url);
+        ctrl.navigate(title, url);
     }
 }

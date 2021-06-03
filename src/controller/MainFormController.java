@@ -26,11 +26,17 @@ public class MainFormController {
         initWindow();
     }
 
-    public void navigate(String url){
+    public void navigate(String title, String url){
             try {
                 Parent root = FXMLLoader.load(this.getClass().getResource(url));
                 pneStage.getChildren().clear();
                 pneStage.getChildren().add(root);
+                lblTitle.setText(title);
+                Stage primaryStage = (Stage) (pneStage.getScene().getWindow());
+                Platform.runLater(()->{
+                    primaryStage.sizeToScene();
+                    primaryStage.centerOnScreen();
+                });
             }catch (IOException e){
                 e.printStackTrace();
             }
