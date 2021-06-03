@@ -28,7 +28,7 @@
             </ImageView>
             <Label id="title" fx:id="lblTitle" alignment="CENTER" layoutX="10.0" layoutY="13.0" prefHeight="35.0" prefWidth="582.0" text="Label" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="5.0">
             </Label>
-            <ImageView fx:id="imgNav" fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">
+            <ImageView fx:id="imgNav" fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="14.0">
                <image>
                   <Image url="@assets/icons/home.png" />
                </image>
