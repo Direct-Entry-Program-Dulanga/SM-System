@@ -1,17 +1,10 @@
 package controller;
 
 import com.jfoenix.controls.JFXRippler;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -63,6 +56,7 @@ public class HomeFormController {
 
     private void navigate(String title, String url) {
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK);
+        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK, () ->
+                ctrl.navigate("Student Management System", "/view/HomeForm.fxml", MainFormController.NAV_ICON_HOME));
     }
 }
