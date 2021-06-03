@@ -26,17 +26,14 @@ public class MainFormController {
         initWindow();
     }
 
-    public void navigate(){
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("/view/HomeForm.fxml"));
-            pneStage.getChildren().add(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void myMethod(){
-        System.out.println("Hello I'm from MainFormController");
+    public void navigate(String url){
+            try {
+                Parent root = FXMLLoader.load(this.getClass().getResource(url));
+                pneStage.getChildren().clear();
+                pneStage.getChildren().add(root);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
     }
 
     private void initWindow() {

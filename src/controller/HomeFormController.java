@@ -46,23 +46,7 @@ public class HomeFormController {
     }
 
     public void pneAddNewStudent_OnMouseClicked(MouseEvent mouseEvent) throws IOException {
-        MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.myMethod();
-    }
-
-    private void navigate(String title, String url) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource(url));
-            Scene addNewStudentScene = new Scene(root);
-            Stage primaryStage = (Stage) (rprAddNewStudent.getScene().getWindow());
-            primaryStage.setResizable(true);
-            primaryStage.setScene(addNewStudentScene);
-            primaryStage.setTitle(title);
-            primaryStage.centerOnScreen();
-            Platform.runLater(() -> primaryStage.setResizable(false));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        navigate("Add New Student", "/view/StudentForm.fxml");
     }
 
     public void pneAddNewStudent_OnKeyReleased(KeyEvent keyEvent) throws IOException {
@@ -75,5 +59,10 @@ public class HomeFormController {
         if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
             navigate("Search Students", "/view/SearchStudentsForm.fxml");
         }
+    }
+
+    private void navigate(String title, String url) {
+        MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
+        ctrl.navigate(url);
     }
 }

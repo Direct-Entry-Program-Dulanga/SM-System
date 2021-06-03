@@ -21,7 +21,7 @@ public class AppInitializer extends Application {
         Parent root = fxmlLoader.load();
         Scene mainScene = new Scene(root);
         MainFormController ctrl = fxmlLoader.getController();
-        ctrl.navigate();
+        ctrl.navigate("/view/HomeForm.fxml");
         mainScene.setUserData(ctrl);
         mainScene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
