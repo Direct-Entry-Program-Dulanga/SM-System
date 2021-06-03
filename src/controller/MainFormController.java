@@ -2,11 +2,13 @@ package controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -36,6 +38,9 @@ public class MainFormController {
                 Platform.runLater(()->{
                     primaryStage.sizeToScene();
                     primaryStage.centerOnScreen();
+//                    Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+//                    primaryStage.setX((visualBounds.getWidth() - primaryStage.getWidth())/2);
+//                    primaryStage.setY((visualBounds.getHeight() - primaryStage.getHeight())/2);
                 });
             }catch (IOException e){
                 e.printStackTrace();
