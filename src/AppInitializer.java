@@ -22,6 +22,7 @@ public class AppInitializer extends Application {
         Scene mainScene = new Scene(root);
         MainFormController ctrl = fxmlLoader.getController();
         ctrl.navigate();
+        mainScene.setUserData(ctrl);
         mainScene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(mainScene);

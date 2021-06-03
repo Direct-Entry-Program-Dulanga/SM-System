@@ -35,6 +35,10 @@ public class MainFormController {
         }
     }
 
+    public void myMethod(){
+        System.out.println("Hello I'm from MainFormController");
+    }
+
     private void initWindow() {
         lblTitle.setMouseTransparent(true);
 

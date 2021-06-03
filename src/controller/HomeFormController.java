@@ -46,7 +46,8 @@ public class HomeFormController {
     }
 
     public void pneAddNewStudent_OnMouseClicked(MouseEvent mouseEvent) throws IOException {
-        navigate("Add New Student", "/view/StudentForm.fxml");
+        MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
+        ctrl.myMethod();
     }
 
     private void navigate(String title, String url) {
