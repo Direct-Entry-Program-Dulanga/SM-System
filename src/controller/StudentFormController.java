@@ -7,10 +7,12 @@ public class StudentFormController {
 
     public TextField txtNIC;
     public TextField txtFullName;
-    public TextField txtFullName1;
-    public TextField txtFullName11;
+    public TextField txtAddress;
+    public TextField txtContactNumber;
+    public TextField txtEmail;
+    public TextField txtDOB;
 
     public void initialize() {
-        MaterialUI.paintTextFields(txtFullName, txtNIC, txtFullName1, txtFullName11);
+        MaterialUI.paintTextFields( txtNIC, txtFullName, txtAddress, txtDOB,  txtContactNumber, txtEmail);
     }
 }
