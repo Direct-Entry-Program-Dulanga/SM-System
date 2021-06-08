@@ -15,10 +15,14 @@
 
 #tbl-results .table-row-cell:filled:hover{
     -fx-background-color: rgba(226, 206, 255, 0.71);
+    -fx-background-insets: 0px 1px 0px 1px;
+    -fx-background-radius: 4px;
 }
 
 #tbl-results .table-row-cell:filled:selected{
-    -fx-background-color: rgba(132, 132, 132, 0.71);
+    -fx-background-color: rgba(201, 201, 201, 0.71);
+    -fx-background-insets: 0px 1px 0px 1px;
+    -fx-background-radius: 4px;
 }
 
 #tbl-results .table-row-cell:empty{
@@ -26,11 +30,14 @@
 }
 
 #tbl-results{
-    -fx-background-color: rgba(0,0,0,0.2);
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-background-insets: 0px, 0px;
+    -fx-padding: 0;
 }
 
 #tbl-results .cell{
     -fx-cell-size: 60px;
+    -fx-wrap-text: true;
 }
 
 #tbl-results .table-cell:empty{
