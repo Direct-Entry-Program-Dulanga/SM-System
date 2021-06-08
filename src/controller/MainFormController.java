@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -40,9 +42,9 @@ public class MainFormController {
 
     public void navigate(String title, String url, AppBarIcon icon, NavActionListener navActionListener) {
         try {
-            imgNav.setVisible(true);
             this.icon = icon;
             this.navActionListener = navActionListener;
+            imgNav.setVisible(true);
 
             if (this.navActionListener == null){
                 imgNav.setCursor(Cursor.DEFAULT);
@@ -65,18 +67,16 @@ public class MainFormController {
                     imgNav.setUserData(new Image("/view/assets/icons/back-hover.png"));
                     break;
             }
-
+            Stage primaryStage = (Stage) (pneStage.getScene().getWindow());
             Parent root = FXMLLoader.load(this.getClass().getResource(url));
-            pneStage.getChildren().clear();
+            FadeTransition ft = new FadeTransition(Duration.millis(750), root);
 
-            FadeTransition ft = new FadeTransition(Duration.millis(500), pneStage);
+            lblTitle.setText(title);
+            pneStage.getChildren().clear();
+            pneStage.getChildren().add(root);
             ft.setFromValue(0.5);
             ft.setToValue(1);
-
-            pneStage.getChildren().add(root);
             ft.play();
-            lblTitle.setText(title);
-            Stage primaryStage = (Stage) (pneStage.getScene().getWindow());
 
             Platform.runLater(() -> {
                 primaryStage.sizeToScene();
@@ -131,6 +131,7 @@ public class MainFormController {
     private void swapNavIcon(){
         if (icon != AppBarIcon.NAV_ICON_NONE && navActionListener != null){
             Image temp = imgNav.getImage();
+
             imgNav.setImage((Image) imgNav.getUserData());
             imgNav.setUserData(temp);
         }

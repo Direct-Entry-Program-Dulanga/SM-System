@@ -4,6 +4,10 @@
     -fx-cursor: hand;
 }
 
+.menu:hover .menu-title{
+    -fx-text-fill:  #8b00ee;
+}
+
 #app-bar{
     -fx-background-radius: 5px 5px 0 0;
 }
