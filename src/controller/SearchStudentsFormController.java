@@ -11,5 +11,9 @@ public class SearchStudentsFormController {
 
     public void initialize(){
         MaterialUI.paintTextFields(txtQuery);
+        tblResults.getItems().add(new Object());
+        tblResults.getItems().add(new Object());
+        tblResults.getItems().add(new Object());
+        tblResults.getItems().add(new Object());
     }
 }

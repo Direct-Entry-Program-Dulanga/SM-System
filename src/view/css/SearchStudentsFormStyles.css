@@ -5,3 +5,36 @@
 .button{
     -fx-border-color: rgba(0,0,0,0.16);
 }
+
+#tbl-results .column-header{
+    -fx-background-color: #BB86FC;
+    -fx-size: 40px;
+    -fx-font-family: "Ubuntu";
+    -fx-font-size: 14px;
+}
+
+#tbl-results .table-row-cell:filled:hover{
+    -fx-background-color: rgba(226, 206, 255, 0.71);
+}
+
+#tbl-results .table-row-cell:filled:selected{
+    -fx-background-color: rgba(132, 132, 132, 0.71);
+}
+
+#tbl-results .table-row-cell:empty{
+    -fx-background-color: white;
+}
+
+#tbl-results{
+    -fx-background-color: rgba(0,0,0,0.2);
+}
+
+#tbl-results .cell{
+    -fx-cell-size: 60px;
+}
+
+#tbl-results .table-cell:empty{
+    -fx-border-color: transparent;
+}
+
+
