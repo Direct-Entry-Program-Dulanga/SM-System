@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -10,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import util.AppBarIcon;
 import util.NavActionListener;
 
@@ -41,6 +43,7 @@ public class MainFormController {
             imgNav.setVisible(true);
             this.icon = icon;
             this.navActionListener = navActionListener;
+
             if (this.navActionListener == null){
                 imgNav.setCursor(Cursor.DEFAULT);
             }else{
@@ -65,7 +68,13 @@ public class MainFormController {
 
             Parent root = FXMLLoader.load(this.getClass().getResource(url));
             pneStage.getChildren().clear();
+
+            FadeTransition ft = new FadeTransition(Duration.millis(500), pneStage);
+            ft.setFromValue(0.5);
+            ft.setToValue(1);
+
             pneStage.getChildren().add(root);
+            ft.play();
             lblTitle.setText(title);
             Stage primaryStage = (Stage) (pneStage.getScene().getWindow());
 
