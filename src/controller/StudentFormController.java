@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -12,6 +13,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
 import javafx.util.converter.DateTimeStringConverter;
 import javafx.util.converter.FormatStringConverter;
+import model.Student;
+import service.StudentService;
 import util.MaterialUI;
 
 import java.text.*;
@@ -30,6 +33,8 @@ public class StudentFormController {
     public JFXButton btnSave;
     public Label lblTitle;
     public Label lblAge;
+
+    private StudentService studentService = new StudentService();
 
     public void initialize() {
         MaterialUI.paintTextFields(txtNIC, txtFullName, txtAddress, txtDOB, txtContactNumber, txtEmail);
@@ -105,5 +110,10 @@ public class StudentFormController {
             txtContactNumber.appendText("-");
             txtContactNumber.positionCaret(txtContactNumber.getText().length() +1);
         }
+    }
+
+    public void btnSave_OnAction(ActionEvent actionEvent) {
+        Student student = new Student();
+        studentService.saveStudent(student);
     }
 }

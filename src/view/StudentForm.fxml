@@ -70,7 +70,7 @@
             </AnchorPane>
             <BorderPane>
                <center>
-                  <JFXButton fx:id="btnSave" alignment="CENTER" minHeight="36.0" prefHeight="36.0" prefWidth="172.0" style="-fx-text-fill: #3700B3;" text="ADD NEW STUDENT" />
+                  <JFXButton fx:id="btnSave" onAction="#btnSave_OnAction" alignment="CENTER" minHeight="36.0" prefHeight="36.0" prefWidth="172.0" style="-fx-text-fill: #3700B3;" text="ADD NEW STUDENT" />
                </center>
             </BorderPane>
          </children>
