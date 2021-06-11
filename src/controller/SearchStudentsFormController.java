@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,14 +26,15 @@ public class SearchStudentsFormController {
         tblResults.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("fullName"));
         tblResults.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
 
-        loadAllStudents();
-        loadAllStudents();
+        txtQuery.textProperty().addListener((observable, oldValue, newValue) -> loadAllStudents(newValue));
+
+        loadAllStudents(null);
     }
 
-    private void loadAllStudents(){
+    private void loadAllStudents(String query){
         tblResults.getItems().clear();
 
-        for (Student student : studentService.findAllStudents()) {
+        for (Student student : studentService.findStudents(query == null || query.trim().isEmpty() ? "": query)) {
             tblResults.getItems().add(new StudentTM(student.getNic(), student.getFullName(), student.getAddress()));
         }
     }
