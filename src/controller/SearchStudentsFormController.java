@@ -5,19 +5,28 @@ import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import model.Student;
 import model.StudentTM;
 import service.StudentService;
+import util.AppBarIcon;
 import util.MaterialUI;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +52,7 @@ public class SearchStudentsFormController {
             imgEdit.getStyleClass().add("action-icons");
             imgTrash.getStyleClass().add("action-icons");
 
+            imgEdit.setOnMouseClicked(event -> updateStudent(param.getValue()));
             imgTrash.setOnMouseClicked(event -> deleteStudent(param.getValue()));
 
             return new ReadOnlyObjectWrapper<>(new HBox(10, imgEdit, imgTrash));
@@ -65,6 +75,28 @@ public class SearchStudentsFormController {
         }
     }
 
+    private void updateStudent(StudentTM tm){
+        try {
+            Stage secondaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainForm.fxml"));
+            Scene secondaryScene = new Scene(loader.load());
+            MainFormController ctrl = loader.getController();
+
+            secondaryStage.setScene(secondaryScene);
+            secondaryScene.setFill(Color.TRANSPARENT);
+            secondaryStage.initStyle(StageStyle.TRANSPARENT);
+            secondaryStage.initModality(Modality.WINDOW_MODAL);
+            secondaryStage.initOwner(txtQuery.getScene().getWindow());
+            secondaryStage.setTitle("Update Student");
+            ctrl.navigate("Update Student","/view/StudentForm.fxml", AppBarIcon.NAV_ICON_NONE, null, tm);
+
+            secondaryStage.showAndWait();
+            tblResults.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadAllStudents(String query){
         tblResults.getItems().clear();
 
@@ -76,6 +108,8 @@ public class SearchStudentsFormController {
     public void tblResults_OnKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.DELETE){
             deleteStudent(tblResults.getSelectionModel().getSelectedItem());
+        }else if (keyEvent.getCode() == KeyCode.ENTER){
+            updateStudent(tblResults.getSelectionModel().getSelectedItem());
         }
     }
 }

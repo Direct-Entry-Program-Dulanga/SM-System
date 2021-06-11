@@ -4,14 +4,18 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 import javafx.util.converter.DateTimeStringConverter;
 import javafx.util.converter.FormatStringConverter;
 import model.Student;
+import model.StudentTM;
 import service.StudentService;
 import util.MaterialUI;
 
@@ -31,11 +35,33 @@ public class StudentFormController {
     public JFXButton btnSave;
     public Label lblTitle;
     public Label lblAge;
+    public AnchorPane root;
+    public ImageView imgLogo;
 
     private StudentService studentService = new StudentService();
 
     public void initialize() {
         MaterialUI.paintTextFields(txtNIC, txtFullName, txtAddress, txtDOB, txtContactNumber, txtEmail);
+
+        Platform.runLater(()->{
+
+            if (root.getUserData() != null){
+                StudentTM tm = (StudentTM) root.getUserData();
+                Student student = studentService.findStudent(tm.getNic());
+
+                txtNIC.setEditable(false);
+                txtNIC.setText(student.getNic());
+                txtFullName.setText(student.getFullName());
+                txtAddress.setText(student.getAddress());
+                txtContactNumber.setText(student.getContact());
+                txtEmail.setText(student.getEmail());
+                txtDOB.setText(student.getDateOfBirth().toString());
+
+                btnSave.setText("UPDATE STUDENT");
+                lblTitle.setText("Update Student");
+                imgLogo.setImage(new Image("/view/assets/Update Student.png"));
+            }
+        });
 
         setMaxLength(txtDOB, 10);
         setMaxLength(txtContactNumber, 11);
@@ -118,7 +144,15 @@ public class StudentFormController {
                     LocalDate.parse(txtDOB.getText()),
                     txtContactNumber.getText(),
                     txtEmail.getText());
-            studentService.saveStudent(student);
+
+            if (btnSave.getText().equals("ADD NEW STUDENT")){
+                studentService.saveStudent(student);
+            }else{
+                StudentTM tm = (StudentTM) root.getUserData();
+                tm.setFullName(txtFullName.getText());
+                tm.setAddress(txtAddress.getText());
+                studentService.updateStudent(student);
+            }
             new Alert(Alert.AlertType.NONE, "Student has been saved successfully", ButtonType.OK).show();
         }catch (RuntimeException e){
             new Alert(Alert.AlertType.ERROR, "Failed to save the student", ButtonType.OK).show();

@@ -41,6 +41,10 @@ public class MainFormController {
     }
 
     public void navigate(String title, String url, AppBarIcon icon, NavActionListener navActionListener) {
+        navigate(title, url, icon, navActionListener, null);
+    }
+
+    public void navigate(String title, String url, AppBarIcon icon, NavActionListener navActionListener, Object data) {
         try {
             this.icon = icon;
             this.navActionListener = navActionListener;
@@ -68,7 +72,8 @@ public class MainFormController {
                     break;
             }
             Stage primaryStage = (Stage) (pneStage.getScene().getWindow());
-            Parent root = FXMLLoader.load(this.getClass().getResource(url));
+            AnchorPane root = FXMLLoader.load(this.getClass().getResource(url));
+            root.setUserData(data);
             FadeTransition ft = new FadeTransition(Duration.millis(750), root);
 
             lblTitle.setText(title);
