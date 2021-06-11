@@ -25,6 +25,10 @@
     -fx-background-radius: 4px;
 }
 
+#tbl-results .table-row-cell:filled:selected *{
+    -fx-text-fill: black;
+}
+
 #tbl-results .table-row-cell:empty{
     -fx-background-color: white;
 }
