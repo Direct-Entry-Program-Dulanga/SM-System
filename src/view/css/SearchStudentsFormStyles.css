@@ -44,4 +44,8 @@
     -fx-border-color: transparent;
 }
 
+.action-icons{
+    -fx-cursor: hand;
+}
+
 
