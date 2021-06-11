@@ -3,9 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
@@ -113,7 +111,17 @@ public class StudentFormController {
     }
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
-        Student student = new Student();
-        studentService.saveStudent(student);
+        try {
+            Student student = new Student(txtNIC.getText(),
+                    txtFullName.getText(),
+                    txtAddress.getText(),
+                    LocalDate.parse(txtDOB.getText()),
+                    txtContactNumber.getText(),
+                    txtEmail.getText());
+            studentService.saveStudent(student);
+            new Alert(Alert.AlertType.NONE, "Student has been saved successfully", ButtonType.OK).show();
+        }catch (RuntimeException e){
+            new Alert(Alert.AlertType.ERROR, "Failed to save the student", ButtonType.OK).show();
+        }
     }
 }

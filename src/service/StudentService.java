@@ -2,12 +2,26 @@ package service;
 
 import model.Student;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentService {
 
     private static final List<Student> studentsDB = new ArrayList<>();
+
+    public StudentService() {
+
+        /* Let's add some dummy data */
+        Student s1 = new Student("456789123V", "Chandima Herath", "Galle", LocalDate.of(1996,05,01), "077-1234567", "abc@ijse.lk");
+        Student s2 = new Student("879456123V", "Pethum Jeewantha", "Matara", LocalDate.of(1989,10,01), "077-456789", "pethum@hotmail.lk");
+        Student s3 = new Student("456132789V", "Dilan Chathuranga", "Panadura", LocalDate.now(), "077-1234567", "dilan@ijse.lk");
+        Student s4 = new Student("879456123V", "Pethum Nuwan", "Matara", LocalDate.of(1989,10,01), "077-456789", "pethum@ijse.lk");
+        saveStudent(s1);
+        saveStudent(s2);
+        saveStudent(s3);
+        saveStudent(s4);
+    }
 
     public void saveStudent(Student student) {
         studentsDB.add(student);
