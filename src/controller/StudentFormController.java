@@ -41,6 +41,10 @@ public class StudentFormController {
     private StudentService studentService = new StudentService();
 
     public void initialize() {
+
+
+        ValidateNIC();
+
         MaterialUI.paintTextFields(txtNIC, txtFullName, txtAddress, txtDOB, txtContactNumber, txtEmail);
 
         Platform.runLater(()->{
@@ -136,16 +140,52 @@ public class StudentFormController {
         }
     }
 
+    public void ValidateNIC(){
+        String nic = txtNIC.getText();
+        if(!(nic.length()== 10 || nic.length() == 12)){
+            new Alert(Alert.AlertType.ERROR, "Invalid NIC").show();
+            return;
+        }
+        if(nic.length() == 10){
+            if(isInteger(nic.substring(0,9)) || nic.endsWith("V") || nic.endsWith("v") ){
+                new Alert(Alert.AlertType.INFORMATION, "Valid Old NIC", ButtonType.OK).show();
+                return;
+            }
+        }else if(nic.length() == 12 || isInteger(nic)){
+            new Alert(Alert.AlertType.INFORMATION, "Valid new NIC", ButtonType.OK).show();
+            return;
+        }
+        new Alert(Alert.AlertType.ERROR, "Invalid NIC").show();
+    }
+
+    private boolean isInteger(String nic) {
+        try{
+            Integer.parseInt(nic);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
+    }
+
+    public void ValidateName(){
+        String name = txtFullName.getText();
+
+    }
+
+
+
     public void btnSave_OnAction(ActionEvent actionEvent) {
         try {
-            Student student = new Student(txtNIC.getText(),
+            Student student = new Student(
+
+                    txtNIC.getText(),
                     txtFullName.getText(),
                     txtAddress.getText(),
                     LocalDate.parse(txtDOB.getText()),
                     txtContactNumber.getText(),
                     txtEmail.getText());
 
-            if (btnSave.getText().equals("ADD NEW STUDENT")){
+            if (btnSave.getText().equals("ADD NEW STUDENT") ){
                 studentService.saveStudent(student);
             }else{
                 StudentTM tm = (StudentTM) root.getUserData();
