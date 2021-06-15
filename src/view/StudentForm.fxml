@@ -28,7 +28,7 @@
          <children>
               <AnchorPane>
                   <children>
-                      <TextField fx:id="txtNIC" accessibleText="NIC" prefHeight="26.0" prefWidth="286.0" promptText="Eg. 83451234V" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                      <TextField fx:id="txtNIC" accessibleText="NIC"  prefHeight="26.0" prefWidth="286.0" promptText="Eg. 83451234V" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
                   </children>
               </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="10.0">
@@ -45,7 +45,7 @@
                <children>
                   <AnchorPane prefHeight="51.0" prefWidth="139.0">
                      <children>
-                        <TextField fx:id="txtDOB" accessibleText="Date of Birth" alignment="CENTER"  onKeyTyped="#txtDOB_OnKeyTyped" prefHeight="26.0" prefWidth="286.0" promptText="Eg. 1983-01-05" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                        <TextField fx:id="txtDOB" accessibleText="Date of Birth" alignment="CENTER" onKeyTyped="#txtDOB_OnKeyTyped" prefHeight="26.0" prefWidth="286.0" promptText="Eg. 1983-01-05" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
                      </children>
                   </AnchorPane>
                   <Label fx:id="lblAge" alignment="CENTER" prefHeight="51.0" prefWidth="430.0" style="-fx-background-color: #6200EE55; -fx-background-radius: 10px;" text="Enter DOB to display the age">
@@ -60,7 +60,7 @@
             </HBox>
             <AnchorPane layoutX="10.0" layoutY="112.0">
                <children>
-                  <TextField fx:id="txtContactNumber" onKeyTyped="#txtContactNumber_OnKeyTyped" accessibleText="Contact Number" prefHeight="26.0" prefWidth="286.0" promptText="Eg. 077-4567891" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                  <TextField fx:id="txtContactNumber" accessibleText="Contact Number" onKeyTyped="#txtContactNumber_OnKeyTyped" prefHeight="26.0" prefWidth="286.0" promptText="Eg. 077-4567891" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="163.0">
@@ -70,7 +70,7 @@
             </AnchorPane>
             <BorderPane>
                <center>
-                  <JFXButton fx:id="btnSave" onAction="#btnSave_OnAction" alignment="CENTER" minHeight="36.0" prefHeight="36.0" prefWidth="172.0" style="-fx-text-fill: #3700B3;" text="ADD NEW STUDENT" />
+                  <JFXButton fx:id="btnSave" alignment="CENTER" minHeight="36.0" onAction="#btnSave_OnAction" onMouseClicked="#AddButton_ONAction" prefHeight="36.0" prefWidth="172.0" style="-fx-text-fill: #3700B3;" text="ADD NEW STUDENT" />
                </center>
             </BorderPane>
          </children>

@@ -6,23 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.StringConverter;
-import javafx.util.converter.DateTimeStringConverter;
-import javafx.util.converter.FormatStringConverter;
 import model.Student;
 import model.StudentTM;
 import service.StudentService;
 import util.MaterialUI;
 
-import java.text.*;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 public class StudentFormController {
 
@@ -43,7 +36,7 @@ public class StudentFormController {
     public void initialize() {
 
 
-        ValidateNIC();
+
 
         MaterialUI.paintTextFields(txtNIC, txtFullName, txtAddress, txtDOB, txtContactNumber, txtEmail);
 
@@ -92,6 +85,7 @@ public class StudentFormController {
             }
 
         });
+
     }
 
 //    private Date parseDate(String input) throws ParseException {
@@ -140,6 +134,7 @@ public class StudentFormController {
         }
     }
 
+
     public void ValidateNIC(){
         String nic = txtNIC.getText();
         if(!(nic.length()== 10 || nic.length() == 12)){
@@ -158,6 +153,45 @@ public class StudentFormController {
         new Alert(Alert.AlertType.ERROR, "Invalid NIC").show();
     }
 
+
+    public void ValidateName(){
+        String name = txtFullName.getText();
+        if((name.length()<3 || name.length()>20)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Name1").show();
+            return;
+        }else if (name.startsWith(" ") || name.startsWith(".")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Name2").show();
+            return;
+        }else if(name.chars().allMatch(Character::isLetter)){
+            new Alert(Alert.AlertType.INFORMATION,"Valid name").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid Name3").show();
+        }
+
+    }
+
+    public void ValidateAddress(){
+        String addr = txtAddress.getText();
+        if((addr.length()<4)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Address1").show();
+            return;
+        }else if (addr.startsWith(" ") || addr.startsWith(".")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Address2").show();
+            return;
+        }else if(addr.matches("[\\p{Punct}&&[#,.()-]]+\\p{Alpha}*+\\d*+\\s?")){
+            new Alert(Alert.AlertType.INFORMATION,"Valid Address").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid Address3").show();
+        }
+    }
+
+    public void AddButton_ONAction(MouseEvent mouseEvent) {
+//        ValidateNIC();
+//        ValidateName();
+        ValidateAddress();
+
+    }
+
     private boolean isInteger(String nic) {
         try{
             Integer.parseInt(nic);
@@ -166,13 +200,6 @@ public class StudentFormController {
             return false;
         }
     }
-
-    public void ValidateName(){
-        String name = txtFullName.getText();
-
-    }
-
-
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
         try {
@@ -184,6 +211,7 @@ public class StudentFormController {
                     LocalDate.parse(txtDOB.getText()),
                     txtContactNumber.getText(),
                     txtEmail.getText());
+
 
             if (btnSave.getText().equals("ADD NEW STUDENT") ){
                 studentService.saveStudent(student);
@@ -198,4 +226,5 @@ public class StudentFormController {
             new Alert(Alert.AlertType.ERROR, "Failed to save the student", ButtonType.OK).show();
         }
     }
+
 }
