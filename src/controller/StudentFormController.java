@@ -171,24 +171,48 @@ public class StudentFormController {
     }
 
     public void ValidateAddress(){
-        String addr = txtAddress.getText();
-        if((addr.length()<4)) {
-            new Alert(Alert.AlertType.ERROR, "Invalid Address1").show();
+        String addr = txtFullName.getText();
+        if((addr.length()<3 || addr.length()>20)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Name1").show();
             return;
-        }else if (addr.startsWith(" ") || addr.startsWith(".")) {
-            new Alert(Alert.AlertType.ERROR, "Invalid Address2").show();
-            return;
-        }else if(addr.matches("[\\p{Punct}&&[#,.()-]]+\\p{Alpha}*+\\d*+\\s?")){
-            new Alert(Alert.AlertType.INFORMATION,"Valid Address").show();
-        }else{
-            new Alert(Alert.AlertType.ERROR, "Invalid Address3").show();
         }
+
+        if(addr.startsWith(" ") || addr.startsWith(".")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Name2").show();
+            return;
+        }
+        if(addr.chars().allMatch(Character::isLetter)){
+            new Alert(Alert.AlertType.INFORMATION,"Valid name").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid Name3").show();
+        }
+
+    }
+
+    public void ValidateEmail(){
+        String email = txtAddress.getText();
+        if((email.length()<4)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Email1").show();
+            return;
+        }
+
+        if (email.startsWith(" ") || email.startsWith(".") || email.endsWith(".")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Email2").show();
+            return;
+        }
+
+        if(email.matches("^[a-zA-Z0-9_.]+@[a-zA-Z0-9.-]+$")){
+            new Alert(Alert.AlertType.INFORMATION,"Valid Email").show();
+            return;
+        }
+        new Alert(Alert.AlertType.ERROR, "Invalid Email3").show();
+
     }
 
     public void AddButton_ONAction(MouseEvent mouseEvent) {
 //        ValidateNIC();
 //        ValidateName();
-        ValidateAddress();
+        ValidateEmail();
 
     }
 
